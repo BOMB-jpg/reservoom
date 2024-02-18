@@ -8,6 +8,8 @@ namespace Reservoom.Models
 {
     public class Reservation
     {
+
+        //为什么属性都是get属性  因为在对象创建后就不在改变  getter是适用于只读  而不在用于修改所以不需要
         public RoomID RoomID { get; }
         public string Username { get; }
         public DateTime StartTime { get; }

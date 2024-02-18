@@ -27,16 +27,16 @@ namespace Reservoom
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost _host;
+        private readonly IHost _host;  //该对象用于承载应用程序的服务。
 
         public App()
         {
-            _host = Host.CreateDefaultBuilder()
-                .AddViewModels()
-                .ConfigureServices((hostContext, services) =>
+            _host = Host.CreateDefaultBuilder()//配置了默认的主机构建器
+                .AddViewModels()//视图模型。
+                .ConfigureServices((hostContext, services) =>   //应用程序的服务。
                 {
                     bool isEndToEndTest = Environment.GetCommandLineArgs().Any(a => a == "E2E");
-
+        
                     if (!isEndToEndTest)
                     {
                         string connectionString = hostContext.Configuration.GetConnectionString("Default");

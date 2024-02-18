@@ -12,9 +12,10 @@ namespace Reservoom.Models
 {
     public class ReservationBook
     {
-        private readonly IReservationProvider _reservationProvider;
-        private readonly IReservationCreator _reservationCreator;
-        private readonly IReservationConflictValidator _reservationConflictValidator;
+        private readonly IReservationProvider _reservationProvider;   //用于提供预订信息的服务
+        private readonly IReservationCreator _reservationCreator;    //用于创建预订信息的服务
+        private readonly IReservationConflictValidator _reservationConflictValidator;   //用于验证新预订是否与现有预订发生冲突的服务。
+        //它可能包含比较新预订与现有预订时间、房间等信息的方法，以确定是否存在冲突。
 
         public ReservationBook(IReservationProvider reservationProvider, IReservationCreator reservationCreator, IReservationConflictValidator reservationConflictValidator)
         {
@@ -26,7 +27,8 @@ namespace Reservoom.Models
         /// <summary>
         /// Get all reservations.
         /// </summary>
-        /// <returns>All reservations in the reservation book.</returns>
+        /// <returns>All reservations in the reservation book.</returns
+       // 得到所有订单
         public async Task<IEnumerable<Reservation>> GetAllReservations()
         {
             return await _reservationProvider.GetAllReservations();
@@ -53,6 +55,7 @@ namespace Reservoom.Models
             }
 
             await _reservationCreator.CreateReservation(reservation);
+            //少了三个类
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Reservoom.Models
         public string Username { get; }
         public DateTime StartTime { get; }
         public DateTime EndTime { get; }
-
+//subtract方法是TimeSpan结构体的
         public TimeSpan Length => EndTime.Subtract(StartTime);
 
         public Reservation(RoomID roomID, string username, DateTime startTime, DateTime endTime)

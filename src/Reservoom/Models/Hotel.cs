@@ -9,10 +9,11 @@ namespace Reservoom.Models
 {
     public class Hotel
     {
+        //预定薄进行交互
         private readonly ReservationBook _reservationBook;
-
+         
         public string Name { get; }
-
+    
         public Hotel(string name, ReservationBook reservationBook)
         {
             Name = name;
@@ -27,7 +28,7 @@ namespace Reservoom.Models
         {
             return await _reservationBook.GetAllReservations();
         }
-
+      
         /// <summary>
         /// Make a reservation.
         /// </summary>

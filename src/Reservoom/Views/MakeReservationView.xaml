@@ -9,11 +9,11 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
+    <UserControl.Resources>  //定义了用户控件的资源 包括为 boolean值转而可见性
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    </UserControl.Resources>
+    </UserControl.Resources>    +
     <Grid Grid.IsSharedSizeScope="True">
-        <Grid.RowDefinitions>
+        <Grid.RowDefinitions> //定义网格部局的行  一共有6行
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -22,13 +22,13 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock
-            Grid.Row="0"
+        <TextBlock 
+            Grid.Row="0"  //  定义了行的位置并为其设计内容
             Style="{StaticResource Header}"
             Text="Make Reservation" />
 
-        <Grid Grid.Row="1" Margin="0,25,0,0">
-            <Grid.RowDefinitions>
+        <Grid Grid.Row="1" Margin="0,25,0,0">   //上右下左
+            <Grid.RowDefinitions>   // 有两行  
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
@@ -109,37 +109,42 @@
                 SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
         </Grid>
 
-        <StackPanel
+        <StackPanel //堆栈面板 
             Grid.Row="4"
             Margin="0,25,0,0"
             Orientation="Horizontal">
             <Button
-                AutomationProperties.AutomationId="MakeReservationSubmitButton"
-                Command="{Binding SubmitCommand}"
+                AutomationProperties.AutomationId="MakeReservationSubmitButton"  
+                Command="{Binding SubmitCommand}" //绑定按钮的命令，当按钮被点击时，将执行绑定的命令
                 Content="Submit" />
+
             <Button
                 Margin="10,0,0,0"
                 Command="{Binding CancelCommand}"
-                Content="Cancel">
+                Content="Cancel">   
                 <Button.Style>
+//表示这个样式是基于系统默认的按钮样式进行的。这意味着，
+//该样式继承了默认按钮样式的所有属性和行为，并且可以在此基础上进行定制。
                     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsSubmitting}" Value="True">
-                                <Setter Property="IsEnabled" Value="False" />
+// 定义了一个数据触发器，它监视绑定到 IsSubmitting 属性的值。当该属性的值为 True 时，
+// 触发器中定义的设置器（Setter）将被激活。
+                                <Setter Property="IsEnabled" Value="False" /> //即禁用标志
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
-            <custom:LoadingSpinner
+            <custom:LoadingSpinner  //夹在动画
                 Margin="10,0,0,0"
                 VerticalAlignment="Center"
-                Diameter="25"
+                Diameter="25" //加载动画直径 25
                 IsLoading="{Binding IsSubmitting}"
                 Thickness="3"
                 Color="Black" />
         </StackPanel>
-
+//报错
         <TextBlock
             Grid.Row="5"
             Margin="0,20,0,0"

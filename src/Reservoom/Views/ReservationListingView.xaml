@@ -15,26 +15,26 @@
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
+        <Grid.RowDefinitions>   //定义两行
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0">  
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />  //占用剩余所有空间用*代替
+                <ColumnDefinition Width="auto" />   //自动占据
             </Grid.ColumnDefinitions>
 
             <TextBlock
-                Grid.Column="0"
-                Style="{StaticResource Header}"
+                Grid.Column="0"    //第一列
+                Style="{StaticResource Header}"   //采用静态资源头部
                 Text="View Reservations" />
 
             <Button
-                Grid.Column="1"
+                Grid.Column="1"    //第二列
                 Margin="10,0,0,0"
-                AutomationProperties.AutomationId="MakeReservationButton"
+                AutomationProperties.AutomationId="MakeReservationButton"    
                 Command="{Binding MakeReservationCommand}"
                 Content="Make Reservation" />
         </Grid>
@@ -60,14 +60,16 @@
                     <ListView ItemsSource="{Binding Reservations}" Visibility="{Binding HasReservations, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" /> //拉神
                                 <Setter Property="AutomationProperties.AutomationId" Value="{Binding RoomID, StringFormat={}{0}_ReservationListingItem}" />
+                                                
                             </Style>
                         </ListView.ItemContainerStyle>
+//   列表视图   把reservations 
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Room ID">
-                                    <GridViewColumn.CellTemplate>
+                                    <GridViewColumn.CellTemplate> //数据模版 标签用于定义网格视图列中单元格的数据模板
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center" Text="{Binding RoomID}" />
                                         </DataTemplate>

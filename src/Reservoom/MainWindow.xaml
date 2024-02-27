@@ -12,17 +12,22 @@
     Height="450"
     FontSize="14"
     mc:Ignorable="d">
+//用于当窗口大小不够时使用 垂直拉动的方式  VerticalScrollBarVisibility =Auto
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid MaxWidth="600" Margin="20 10">
+        <Grid MaxWidth="600" Margin="20 10">  // Grid用来布局
+//  Gird资源部分 在本地某个窗口控件上为你保存数据
             <Grid.Resources>
-                <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
+         // 在 <Grid> 元素的资源部分（<Grid.Resources>）中定义了两个数据模板（DataTemplate），分别用于将视图模型 MakeReservationViewModel 和 ReservationListingViewModel 
+       // 与对应的视图 MakeReservationView 和 ReservationListingView 进行关联。
+               <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
                     <views:MakeReservationView />
+          
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vms:ReservationListingViewModel}">
                     <views:ReservationListingView />
                 </DataTemplate>
             </Grid.Resources>
-
+//<ContentControl> 元素用于显示当前的视图模型，通过绑定 
             <ContentControl Content="{Binding CurrentViewModel}" />
         </Grid>
     </ScrollViewer>
